@@ -1,0 +1,38 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button type="button"><a href="./shortener.html">other page</a></button>
+    <form>
+        <input type="text" name="" id="first-value">
+        <input type="text " id="second-value">
+        <button type="submit">check</button>
+    </form>
+    <script>
+        document.querySelector("form").addEventListener("submit", e => {
+            e.preventDefault();
+        });
+
+        const form = document.querySelector("form");
+
+        form.addEventListener("submit", function () {
+            const ul = document.querySelector("ul");
+            const first = document.getElementById("first-value");
+            const second = document.getElementById("second-value");
+
+
+            localStorage.setItem("tasks", JSON.stringify([...JSON.parse(localStorage.getItem("tasks") || "[]"),
+            { originalLink: first.value, bubbedLink: second.value }]));
+        })
+
+
+    </script>
+</body>
+
+</html>
