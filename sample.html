@@ -25,13 +25,14 @@
             const ul = document.querySelector("ul");
             const first = document.getElementById("first-value");
             const second = document.getElementById("second-value");
+            const d = new Date();
 
-
-            localStorage.setItem("tasks", JSON.stringify([...JSON.parse(localStorage.getItem("tasks") || "[]"),
-            { originalLink: first.value, bubbedLink: second.value }]));
+            localStorage.setItem("links", JSON.stringify([...JSON.parse(localStorage.getItem("links") || "[]"),
+            { originalLink: first.value, bubbedLink: second.value, clickedTime: d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) }]));
+            
+            first.value = "";
+            second.value = "";
         })
-
-
     </script>
 </body>
 

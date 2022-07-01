@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 body {
     background-color: rgb(246, 232, 246);
-    padding-top: 3rem;
+    overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
 }
 
 a {
@@ -10,6 +13,8 @@ a {
 h1 {
     text-align: center;
     margin-bottom: 3rem;
+    margin-top: 4rem;
+    font-family: cursive;
 }
 
 #go-back {
@@ -21,6 +26,7 @@ h1 {
     position: fixed;
     bottom: 3rem;
     left: 3rem;
+    box-shadow: 2px 2px 20px rgb(189, 185, 185);
 }
 
 ul {
@@ -55,13 +61,14 @@ li {
     font-size: 1.1rem;
 }
 
-#bubbed-link {
-    color: blueviolet;
+.bubbed-link {
+    color: #8a2be2;
     font-size: 1.15rem;
 }
 
 #link-time {
     font-style: italic;
+    font-size: 0.9rem;
 }
 
 #btn-div button,
@@ -98,6 +105,10 @@ li {
     text-align: right;
 }
 
+#clear-btn{
+    display: none;
+}
+
 
 @media (max-width: 1200px) {
     ul {
@@ -121,6 +132,9 @@ li {
 }
 
 @media (max-width: 768px) {
+    h1{
+        margin-top: 3rem;
+    }
     ul {
         width: 80%;
         margin: auto;
@@ -134,7 +148,7 @@ li {
         width: 100%;
     }
 
-    #btn-div{
+    #btn-div {
         padding-bottom: 1rem;
     }
 }
@@ -157,7 +171,7 @@ li {
 }
 
 @media (max-width: 390px) {
-    #img-div img{
+    #img-div img {
         margin-right: 1rem;
     }
 
@@ -169,7 +183,7 @@ li {
 }
 
 @media (max-width: 334px) {
-    #img-div img{
+    #img-div img {
         display: none;
     }
 }

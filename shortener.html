@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Recent Urls</title>
 
     <link rel="stylesheet" href="./shortener.css">
 </head>
@@ -22,9 +22,9 @@
     <script>
         const ul = document.querySelector("ul");
 
-        let tasks = Array.from(JSON.parse(localStorage.getItem("tasks")));
+        let links = Array.from(JSON.parse(localStorage.getItem("links")));
 
-        tasks.forEach(task => {
+        links.forEach(link => {
             const newModalBody = document.querySelector("#new-modal-body");
             const list = document.querySelector("ul");
             const li = document.createElement("li");
@@ -36,39 +36,47 @@
                     <div id="links-div">
                         <div id="links-sub-div">
                         <div>
-                            <p id="original-link">${task.originalLink}</p>
-                            <p id="bubbed-link">${task.bubbedLink}</p>
+                            <p id="original-link">${link.originalLink}</p>
+                            <p class="bubbed-link">${link.bubbedLink}</p>
                         </div>
-                        <p id="link-time">8 hours ago</p>
+                        <p id="link-time">${link.clickedTime}</p>
                     </div>
                     </div>
                     <div id="btn-div">
                         <button id="detailed"><a href="#">Detailed stats</a></button>
-                        <button class="copy">
-                        <img src="./icons8-copy-17.png" alt="">
-                        Copy</button>
+                        <button class="copy" id="${link.bubbedLink}" onclick="copyTextFunction()">
+                        <img src="./icons8-copy-17.png" alt="">Copy</button>
                 </div>
             `
             ul.insertBefore(li, ul.children[0]);
+            document.getElementById("clear-btn").style.display = "inline-block";
         })
+
         localStorage.removeItem('myLinks');
 
         const clearBtn = document.getElementById("clear-btn");
-        const copyBtns = document.querySelectorAll(".copy");
 
-        let clear = () => {
+        let clearFunction = () => {
             ul.innerHTML = "";
             localStorage.clear();
+            clearBtn.style.display = "none";
         };
 
-        copyBtns.forEach(copyBtn => {
-            let copyLinkFunction = () => {
-                const copyText = document.getElementById("bubbed-link");
-                alert("Copied the text: " + copyText.innerHTML);
-            };
-            copyBtn.addEventListener("click", copyLinkFunction);
+        clearBtn.addEventListener("click", clearFunction);
+
+        document.querySelectorAll(".copy").forEach((item, index) => {
+            item.addEventListener("click", async (event) => {
+                if (!navigator.clipboard) {
+                    return;
+                }
+                try {
+                    await navigator.clipboard.writeText(event.target.id);
+                    event.target.textContent = "Copied"
+                } catch (err) {
+                    console.error("Failed to copy!", err);
+                }
+            });
         });
-        clearBtn.addEventListener("click", clear);
     </script>
 </body>
 
